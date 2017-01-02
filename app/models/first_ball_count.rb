@@ -1,0 +1,2 @@
+class FirstBallCount < ApplicationRecord
+end

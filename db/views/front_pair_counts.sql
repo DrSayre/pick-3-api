@@ -1,0 +1,1 @@
+SELECT front_pair, count(*) AS quanity FROM pick_threes GROUP BY front_pair ORDER BY front_pair;

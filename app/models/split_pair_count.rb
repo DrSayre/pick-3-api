@@ -1,0 +1,2 @@
+class SplitPairCount < ApplicationRecord
+end

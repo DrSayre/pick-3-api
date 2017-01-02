@@ -1,0 +1,1 @@
+SELECT numbers, count(*) AS quanity FROM pick_threes WHERE drawing_time_id IN (SELECT id FROM drawing_times WHERE name ilike 'evening') GROUP BY numbers ORDER BY numbers;

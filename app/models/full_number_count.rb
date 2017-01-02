@@ -1,0 +1,2 @@
+class FullNumberCount < ApplicationRecord
+end

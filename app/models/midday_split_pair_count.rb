@@ -1,0 +1,2 @@
+class MiddaySplitPairCount < ApplicationRecord
+end

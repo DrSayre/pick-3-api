@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  drawing_time: one
+  first_ball: 1
+  second_ball: 1
+  third_ball: 1
+  drawing_date: 2016-12-26
+
+two:
+  drawing_time: two
+  first_ball: 1
+  second_ball: 1
+  third_ball: 1
+  drawing_date: 2016-12-26

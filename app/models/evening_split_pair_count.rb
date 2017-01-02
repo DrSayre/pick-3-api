@@ -1,0 +1,2 @@
+class EveningSplitPairCount < ApplicationRecord
+end

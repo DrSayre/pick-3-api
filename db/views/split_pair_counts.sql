@@ -1,0 +1,1 @@
+SELECT split_pair, count(*) AS quanity FROM pick_threes GROUP BY split_pair ORDER BY split_pair;

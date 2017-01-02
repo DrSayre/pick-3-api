@@ -1,0 +1,2 @@
+class MiddayBackPairCount < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class BackPairCount < ApplicationRecord
+end

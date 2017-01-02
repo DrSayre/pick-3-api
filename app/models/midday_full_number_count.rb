@@ -1,0 +1,2 @@
+class MiddayFullNumberCount < ApplicationRecord
+end

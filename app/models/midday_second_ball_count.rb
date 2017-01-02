@@ -1,0 +1,2 @@
+class MiddaySecondBallCount < ApplicationRecord
+end

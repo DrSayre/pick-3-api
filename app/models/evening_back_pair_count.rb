@@ -1,0 +1,2 @@
+class EveningBackPairCount < ApplicationRecord
+end

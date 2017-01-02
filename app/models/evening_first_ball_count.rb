@@ -1,0 +1,2 @@
+class EveningFirstBallCount < ApplicationRecord
+end

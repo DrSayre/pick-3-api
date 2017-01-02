@@ -1,0 +1,2 @@
+class ThirdBallCount < ApplicationRecord
+end

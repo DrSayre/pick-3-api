@@ -1,0 +1,2 @@
+class MiddayFrontPairCount < ApplicationRecord
+end

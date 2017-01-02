@@ -1,0 +1,2 @@
+class SecondBallCount < ApplicationRecord
+end

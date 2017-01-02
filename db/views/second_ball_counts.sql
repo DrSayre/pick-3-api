@@ -1,0 +1,1 @@
+SELECT second_ball, count(*) AS quanity FROM pick_threes GROUP BY second_ball ORDER BY second_ball;

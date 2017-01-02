@@ -1,0 +1,1 @@
+SELECT numbers, count(*) AS quanity FROM pick_threes GROUP BY numbers ORDER BY numbers;

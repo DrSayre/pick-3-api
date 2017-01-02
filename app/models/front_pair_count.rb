@@ -1,0 +1,2 @@
+class FrontPairCount < ApplicationRecord
+end

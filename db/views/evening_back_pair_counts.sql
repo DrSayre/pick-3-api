@@ -1,0 +1,1 @@
+SELECT back_pair, count(*) AS quanity FROM pick_threes WHERE drawing_time_id IN (SELECT id FROM drawing_times WHERE name ilike 'evening') GROUP BY back_pair ORDER BY back_pair;
