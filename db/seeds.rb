@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 def save_numbers(drawing_time, drawing)
   months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  last_date = PickThree.maximum(:drawing_date).year
+  # last_date = PickThree.maximum(:drawing_date).year
   (1998..Time.now.year).each do |year|
     months.each do |month|
       url = "https://www.alllotto.com/Kentucky-#{drawing}-#{month}-#{year}-Lottery-Results.php"
