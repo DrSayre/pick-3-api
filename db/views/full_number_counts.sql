@@ -1,1 +1,1 @@
-SELECT numbers, count(*) AS quanity FROM pick_threes GROUP BY numbers ORDER BY numbers;
+SELECT numbers, count(*) AS quanity, max(drawing_date) AS last_draw FROM pick_threes GROUP BY numbers ORDER BY numbers;

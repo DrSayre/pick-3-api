@@ -1,1 +1,1 @@
-SELECT second_ball, count(*) AS quanity FROM pick_threes GROUP BY second_ball ORDER BY second_ball;
+SELECT second_ball, count(*) AS quanity, max(drawing_date) AS last_draw FROM pick_threes GROUP BY second_ball ORDER BY second_ball;

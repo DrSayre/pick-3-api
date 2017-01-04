@@ -1,1 +1,1 @@
-SELECT split_pair, count(*) AS quanity FROM pick_threes GROUP BY split_pair ORDER BY split_pair;
+SELECT split_pair, count(*) AS quanity, max(drawing_date) AS last_draw FROM pick_threes GROUP BY split_pair ORDER BY split_pair;

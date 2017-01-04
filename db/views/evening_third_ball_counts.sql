@@ -1,1 +1,1 @@
-SELECT third_ball, count(*) AS quanity FROM pick_threes WHERE drawing_time_id IN (SELECT id FROM drawing_times WHERE name ilike 'evening') GROUP BY third_ball ORDER BY third_ball;
+SELECT third_ball, count(*) AS quanity, max(drawing_date) AS last_draw FROM pick_threes WHERE drawing_time_id IN (SELECT id FROM drawing_times WHERE name ilike 'evening') GROUP BY third_ball ORDER BY third_ball;
