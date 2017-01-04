@@ -25,7 +25,7 @@ class PickThree < ApplicationRecord
     numbers.delete_if{ |number| back_pairs.exclude? (number.chars[1] + number.chars[2]).to_i }
     recent_draws = PickThree.where(numbers: numbers).where('drawing_date > :year_ago', {year_ago: 1.year.ago}).map{|recent| recent.numbers}
     numbers.delete_if{ |number| recent_draws.include? number.to_i}
-    numbers.sort
+    (numbers + numbers_due).uniq.sort
   end
 
   def self.possible_numbers(drawing)
@@ -138,5 +138,22 @@ class PickThree < ApplicationRecord
       evening = EveningBackPairCount.where("quanity < #{evening}").map{ |numbers| numbers.back_pair }
     end
     (all + evening).uniq
+  end
+
+  def self.numbers_due
+    numbers = FullNumberCount.where('last_draw < :five_hundred_days_ago', {five_hundred_days_ago: 500.days.ago}).map{ |number| "%03d" % number.numbers}
+    first_balls = FirstBallCount.where('last_draw < :five_days_ago', {five_days_ago: 5.days.ago}).map{ |first| first.first_ball }
+    second_balls = SecondBallCount.where('last_draw < :five_days_ago', {five_days_ago: 5.days.ago}).map{ |second| second.second_ball }
+    third_balls = ThirdBallCount.where('last_draw < :five_days_ago', {five_days_ago: 5.days.ago}).map{ |third| third.third_ball }
+    front_pairs = FrontPairCount.where('last_draw < :fifty_days_ago', {fifty_days_ago: 50.days.ago}).map{ |front| front.front_pair }
+    split_pairs = SplitPairCount.where('last_draw < :fifty_days_ago', {fifty_days_ago: 50.days.ago}).map{ |split| split.split_pair }
+    back_pairs = BackPairCount.where('last_draw < :fifty_days_ago', {fifty_days_ago: 50.days.ago}).map{ |back| back.back_pair }
+    numbers.delete_if{ |number| first_balls.exclude? number.chars[0].to_i }
+    numbers.delete_if{ |number| second_balls.exclude? number.chars[1].to_i }
+    numbers.delete_if{ |number| third_balls.exclude? number.chars[2].to_i }
+    numbers.delete_if{ |number| front_pairs.exclude? (number.chars[0] + number.chars[1]).to_i }
+    numbers.delete_if{ |number| split_pairs.exclude? (number.chars[0] + number.chars[2]).to_i }
+    numbers.delete_if{ |number| back_pairs.exclude? (number.chars[1] + number.chars[2]).to_i }
+    numbers
   end
 end
