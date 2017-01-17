@@ -1,1 +1,1 @@
-SELECT * FROM full_number_counts WHERE numbers NOT IN (SELECT numbers FROM pick_threes WHERE drawing_date > NOW() - INTERVAL '500 days')
+SELECT * FROM (SELECT numbers, count(*) AS quanity, max(drawing_date) AS last_draw FROM pick_threes GROUP BY numbers ORDER BY numbers) AS foo WHERE numbers NOT IN (SELECT numbers FROM pick_threes WHERE drawing_date > NOW() - INTERVAL '500 days')
