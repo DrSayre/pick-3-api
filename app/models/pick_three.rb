@@ -25,7 +25,9 @@ class PickThree < ApplicationRecord
     numbers.delete_if{ |number| back_pairs.exclude? (number.chars[1] + number.chars[2]).to_i }
     recent_draws = PickThree.where(numbers: numbers).where('drawing_date > :year_ago', {year_ago: 1.year.ago}).map{|recent| recent.numbers}
     numbers.delete_if{ |number| recent_draws.include? number.to_i}
-    (numbers + numbers_due).uniq.sort
+    more_numbers = MiddayNumbersDue.wheel if drawing == 'midday'
+    more_numbers = EveningNumbersDue.wheel if drawing == 'evening'
+    (numbers + numbers_due + more_numbers).uniq.sort
   end
 
   def self.possible_numbers(drawing)

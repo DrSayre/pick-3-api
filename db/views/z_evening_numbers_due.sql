@@ -1,0 +1,1 @@
+SELECT numbers, count(*) AS quanity, max(drawing_date) AS last_draw FROM pick_threes WHERE drawing_date > NOW() - INTERVAL '1000 days' AND drawing_time_id IN (SELECT id FROM drawing_times WHERE name ilike 'evening') AND numbers in (SELECT numbers FROM numbers_due) GROUP BY numbers ORDER BY numbers;
