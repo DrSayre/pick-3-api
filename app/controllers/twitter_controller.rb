@@ -1,13 +1,17 @@
 class TwitterController < ApplicationController
   def midday
     numbers = PickThree.wheel('midday')
-    $twitter.update("Today's drawing: #{numbers.join(', ')} #KYPick3")
+    tweet = "Today's drawing: #{numbers.join(', ')} #KYPick3"
+    print "\n**********\n#{tweet}\n**********\n"
+    $twitter.update(tweet)
     render status: 204
   end
 
   def evening
     numbers = PickThree.wheel('evening')
-    $twitter.update("Tonight's drawing: #{numbers.join(', ')} #KYPick3")
+    tweet = "Tonight's drawing: #{numbers.join(', ')} #KYPick3"
+    print "\n**********\n#{tweet}\n**********\n"
+    $twitter.update(tweet)
     render status: 204
   end
 
