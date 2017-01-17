@@ -2,7 +2,7 @@ class DrawingMath < ApplicationRecord
   def self.wheel
     numbers = []
     all.each do |number|
-      numbers << number.numbers if foo(number.numbers)
+      numbers << number.numbers.to_s if foo(number.numbers)
     end
     numbers
   end
