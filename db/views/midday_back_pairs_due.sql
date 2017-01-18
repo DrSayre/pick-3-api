@@ -1,0 +1,1 @@
+SELECT * FROM (SELECT back_pair, max(drawing_date) AS last_draw FROM pick_threes GROUP BY back_pair ORDER BY back_pair) AS foo WHERE last_draw < NOW() - INTERVAL '50 days' AND back_pair NOT IN (SELECT back_pair FROM pick_threes WHERE drawing_time_id IN (SELECT id FROM drawing_times WHERE name ilike 'midday') AND drawing_date > NOW() - INTERVAL '100 days');

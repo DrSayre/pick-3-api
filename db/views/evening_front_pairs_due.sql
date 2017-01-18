@@ -1,0 +1,1 @@
+SELECT * FROM (SELECT front_pair, max(drawing_date) AS last_draw FROM pick_threes GROUP BY front_pair ORDER BY front_pair) AS foo WHERE last_draw < NOW() - INTERVAL '50 days' AND front_pair NOT IN (SELECT front_pair FROM pick_threes WHERE drawing_time_id IN (SELECT id FROM drawing_times WHERE name ilike 'evening') AND drawing_date > NOW() - INTERVAL '100 days');
