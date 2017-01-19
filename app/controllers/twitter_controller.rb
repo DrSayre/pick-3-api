@@ -7,6 +7,54 @@ class TwitterController < ApplicationController
     render status: 204
   end
 
+  def midday_front
+    numbers = MiddayFrontPairsDue.wheel
+    tweet = "Today's Front pairs: #{numbers.join(', ')} #KYPick3"
+    print "\n**********\n#{tweet}\n**********\n"
+    $twitter.update(tweet) unless numbers.blank?
+    render status: 204
+  end
+
+  def midday_split
+    numbers = MiddaySplitPairsDue.wheel
+    tweet = "Today's Split pairs: #{numbers.join(', ')} #KYPick3"
+    print "\n**********\n#{tweet}\n**********\n"
+    $twitter.update(tweet) unless numbers.blank?
+    render status: 204
+  end
+
+  def midday_back
+    numbers = MiddayBackPairsDue.wheel
+    tweet = "Today's Back pairs: #{numbers.join(', ')} #KYPick3"
+    print "\n**********\n#{tweet}\n**********\n"
+    $twitter.update(tweet) unless numbers.blank?
+    render status: 204
+  end
+
+  def evening_front
+    numbers = EveningFrontPairsDue.wheel
+    tweet = "Tonight's Front pairs: #{numbers.join(', ')} #KYPick3"
+    print "\n**********\n#{tweet}\n**********\n"
+    $twitter.update(tweet) unless numbers.blank?
+    render status: 204
+  end
+
+  def evening_split
+    numbers = EveningSplitPairsDue.wheel
+    tweet = "Tonight's Split pairs: #{numbers.join(', ')} #KYPick3"
+    print "\n**********\n#{tweet}\n**********\n"
+    $twitter.update(tweet) unless numbers.blank?
+    render status: 204
+  end
+
+  def evening_back
+    numbers = EveningBackPairsDue.wheel
+    tweet = "Tonight's Back pairs: #{numbers.join(', ')} #KYPick3"
+    print "\n**********\n#{tweet}\n**********\n"
+    $twitter.update(tweet) unless numbers.blank?
+    render status: 204
+  end
+
   def evening
     numbers = PickThree.wheel('evening')
     tweet = "Tonight's drawing: #{numbers.join(', ')} #KYPick3"
