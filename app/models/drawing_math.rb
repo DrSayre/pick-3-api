@@ -51,4 +51,10 @@ class DrawingMath < ApplicationRecord
     winners = winners.select{|winner| foo(winner.numbers)}
     return winners
   end
+
+  def box_value
+    padded_numbers = "%03d" % numbers
+    array_numbers = [padded_numbers[0], padded_numbers[1], padded_numbers[2]].sort
+    "#{array_numbers[0]}#{array_numbers[1]}#{array_numbers[2]}".to_i
+  end
 end

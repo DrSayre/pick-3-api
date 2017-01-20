@@ -1,7 +1,7 @@
 class PickThree < ApplicationRecord
   belongs_to :drawing_time
   before_save :set_pairs
-  after_save :box_update
+  after_save :update_box
 
   def box_update
     BoxSingle.update_last_draw
@@ -163,5 +163,29 @@ class PickThree < ApplicationRecord
     numbers.delete_if{ |number| split_pairs.exclude? (number.chars[0] + number.chars[2]).to_i }
     numbers.delete_if{ |number| back_pairs.exclude? (number.chars[1] + number.chars[2]).to_i }
     numbers
+  end
+
+  def self.update_box
+    all.each do |pick_three|
+      number_array = [pick_three.first_ball, pick_three.second_ball, pick_three.third_ball].sort
+      number_count = number_array.uniq.count
+      if number_count == 2
+        BoxDouble.create(number: "#{number_array[0]}#{number_array[1]}#{number_array[2]}".to_i, drawing_time_id: pick_three.drawing_time_id, drawing_date: pick_three.drawing_date)
+      end
+      if number_count == 3
+        BoxSingle.create(number: "#{number_array[0]}#{number_array[1]}#{number_array[2]}".to_i, drawing_time_id: pick_three.drawing_time_id, drawing_date: pick_three.drawing_date)
+      end
+    end
+  end
+
+  def update_box
+    number_array = [self.first_ball, self.second_ball, self.third_ball].sort
+    number_count = number_array.uniq.count
+    if number_count == 2
+      BoxDouble.create(number: "#{number_array[0]}#{number_array[1]}#{number_array[2]}".to_i, drawing_time_id: self.drawing_time_id, drawing_date: self.drawing_date)
+    end
+    if number_count == 3
+      BoxSingle.create(number: "#{number_array[0]}#{number_array[1]}#{number_array[2]}".to_i, drawing_time_id: self.drawing_time_id, drawing_date: self.drawing_date)
+    end
   end
 end

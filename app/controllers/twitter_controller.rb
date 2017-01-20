@@ -98,7 +98,19 @@ class TwitterController < ApplicationController
     end
   end
 
-  def evening_wheel
-    
+  def midday_straight_box
+    numbers = MiddayNumbersDue.spike
+    tweet = "Today's Straight/Box: #{numbers.join(', ')} #KYPick3"
+    print "\n**********\n#{tweet}\n**********\n"
+    $twitter.update(tweet)
+    render status: 204
+  end
+
+  def evening_straight_box
+    numbers = EveningNumbersDue.spike
+    tweet = "Tonight's Straight/Box: #{numbers.join(', ')} #KYPick3"
+    print "\n**********\n#{tweet}\n**********\n"
+    $twitter.update(tweet)
+    render status: 204
   end
 end

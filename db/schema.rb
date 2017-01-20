@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120003357) do
+ActiveRecord::Schema.define(version: 20170120040717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,15 +18,19 @@ ActiveRecord::Schema.define(version: 20170120003357) do
   create_table "box_doubles", force: :cascade do |t|
     t.integer  "number"
     t.date     "last_draw"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "drawing_time_id"
+    t.date     "drawing_date"
   end
 
   create_table "box_singles", force: :cascade do |t|
     t.integer  "number"
     t.date     "last_draw"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "drawing_time_id"
+    t.date     "drawing_date"
   end
 
   create_table "drawing_times", force: :cascade do |t|

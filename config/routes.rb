@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   post 'twitter/evening_front', to: 'twitter#evening_front'
   post 'twitter/evening_split', to: 'twitter#evening_split'
   post 'twitter/evening_back', to: 'twitter#evening_back'
+  post 'twitter/midday_straight_box', to: 'twitter#midday_straight_box'
+  post 'twitter/evening_straight_box', to: 'twitter#evening_straight_box'
 end

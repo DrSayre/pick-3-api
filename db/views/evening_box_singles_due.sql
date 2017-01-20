@@ -1,0 +1,1 @@
+SELECT * FROM (SELECT number, max(drawing_date) AS last_draw FROM box_singles GROUP BY number) as foo WHERE last_draw < NOW() - INTERVAL '84 days' AND number NOT IN (SELECT number FROM box_singles WHERE drawing_date > NOW() - INTERVAL '168 days' AND drawing_time_id IN (SELECT id FROM drawing_times WHERE name ilike 'evening'))
