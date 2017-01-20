@@ -6,11 +6,12 @@ class MiddayNumbersDue < DrawingMath
     candidates = []
     box_singles = MiddayBoxSinglesDue.select(:number)
     box_doubles = MiddayBoxDoublesDue.select(:number)
+    boxes = (box_singles + box_doubles).map{|box| box.number}
+    print boxes.inspect
     numbers_due.each do |due|
-      good = box_singles.include? due.box_value
-      good = box_doubles.include? due.box_value
+      good = boxes.include? due.box_value
       candidates << due.numbers if good
     end
-    candidates
+    candidates.sort
   end
 end

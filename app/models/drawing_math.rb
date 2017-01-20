@@ -25,6 +25,31 @@ class DrawingMath < ApplicationRecord
     true
   end
 
+  def self.box_foo(number)
+    padded_numbers = '%03d' % number
+    numbers_count = [padded_numbers[0], padded_numbers[1], padded_numbers[2]].uniq.count
+    if numbers_count == 3
+      draws = PickThree.where(['drawing_date >= ?', BoxSingle.find_by(number: number).last_draw])
+    elsif numbers_count == 2
+      draws = PickThree.where(['drawing_date >= ?', BoxDouble.find_by(number: number).last_draw])
+    else
+      return false
+    end
+    first_ball = draws.group(:first_ball).count
+    first_candidates = candidate_balls(first_ball)
+    return false if first_candidates.exclude? padded_numbers[0].to_i
+
+    second_ball = draws.group(:second_ball).count
+    second_candidates = candidate_balls(second_ball)
+    return false if second_candidates.exclude? padded_numbers[1].to_i
+    
+    third_ball = draws.group(:third_ball).count
+    third_candidates = candidate_balls(third_ball)
+    return false if third_candidates.exclude? padded_numbers[2].to_i
+    
+    true
+  end
+
   def self.candidate_balls(hash)
     array = hash.map{ |key, value| value}
     mean = array.mean
