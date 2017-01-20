@@ -32,4 +32,23 @@ class DrawingMath < ApplicationRecord
     qual = mean - st_dev
     hash.map{ |key, value| key.to_i if value < qual }.compact
   end
+
+  def self.straight_box
+    box_combos = BoxSingle.where('last_draw < :eighty_four_days_ago', {eighty_four_days_ago: 84.days.ago}) + BoxDouble.where('last_draw < :hundred_sixy_eight_days_ago', {hundred_sixy_eight_days_ago: 168.days.ago})
+    box_combos = box_combos.map{ |box| "%03d" % box.number }
+    total_combos = []
+    box_combos.each do |box|
+      total_combos << ["#{box[0]}#{box[1]}#{box[2]}".to_i,
+                      "#{box[0]}#{box[2]}#{box[1]}".to_i,
+                      "#{box[1]}#{box[0]}#{box[2]}".to_i,
+                      "#{box[1]}#{box[2]}#{box[0]}".to_i,
+                      "#{box[2]}#{box[0]}#{box[1]}".to_i,
+                      "#{box[2]}#{box[1]}#{box[0]}".to_i]
+    end
+    total_combos.flatten!
+    combos = all
+    winners = combos.select{|number| total_combos.include? number.numbers}
+    winners = winners.select{|winner| foo(winner.numbers)}
+    return winners
+  end
 end

@@ -1,6 +1,12 @@
 class PickThree < ApplicationRecord
   belongs_to :drawing_time
   before_save :set_pairs
+  after_save :box_update
+
+  def box_update
+    BoxSingle.update_last_draw
+    BoxDouble.update_last_draw
+  end
 
   def set_pairs
     self.front_pair = first_ball * 10 + second_ball
