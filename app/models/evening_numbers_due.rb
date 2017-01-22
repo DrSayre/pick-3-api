@@ -11,6 +11,6 @@ class EveningNumbersDue < DrawingMath
       good = boxes.include? due.box_value
       candidates << due.numbers if good
     end
-    prune_numbers(candidates).sort
+    prune_numbers(candidates, 'evening').sort
   end
 end
