@@ -82,4 +82,15 @@ class DrawingMath < ApplicationRecord
     array_numbers = [padded_numbers[0], padded_numbers[1], padded_numbers[2]].sort
     "#{array_numbers[0]}#{array_numbers[1]}#{array_numbers[2]}".to_i
   end
+
+  def self.prune_numbers(combos)
+    combos.map!{ |combo| "%03d" % combo }
+    first_balls = FirstBallCount.where('last_draw < :five_days_ago', {five_days_ago: 5.days.ago}).map{ |first| first.first_ball }
+    second_balls = SecondBallCount.where('last_draw < :five_days_ago', {five_days_ago: 5.days.ago}).map{ |second| second.second_ball }
+    third_balls = ThirdBallCount.where('last_draw < :five_days_ago', {five_days_ago: 5.days.ago}).map{ |third| third.third_ball }
+    combos.delete_if{ |number| first_balls.exclude? number.chars[0].to_i }
+    combos.delete_if{ |number| second_balls.exclude? number.chars[1].to_i }
+    combos.delete_if{ |number| third_balls.exclude? number.chars[2].to_i }
+    combos 
+  end
 end
