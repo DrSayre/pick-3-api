@@ -1,1 +1,1 @@
-SELECT third_ball, count(*) AS quanity, max(drawing_date) AS last_draw FROM pick_threes GROUP BY third_ball ORDER BY third_ball;
+SELECT third_ball, count(*) AS quanity, max(drawing_date) AS last_draw FROM pick_threes WHERE drawing_date > NOW() - INTERVAL '1000 days' GROUP BY third_ball ORDER BY third_ball;
