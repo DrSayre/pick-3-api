@@ -68,6 +68,7 @@ class TwitterController < ApplicationController
     evening = DrawingTime.where(name: 'Evening').first_or_create
     save_numbers(midday, 'Midday-Pick-3')
     save_numbers(evening, 'Pick-3')
+    PickThree.where('drawing_date < :five_years_ago', {five_years_ago: 5.years.ago}).destroy_all
   end
 
   def save_numbers(drawing_time, drawing)
